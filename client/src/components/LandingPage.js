@@ -9,41 +9,46 @@ import {Redirect} from "react-router";
 export const LandingPage = () => {
     //initialize state for redirect
     const[redirect,setRedirect] = useState(false);
-    
+    //initialize the intial text that appears on the page
+    //this is done instead of entering text directly into the field in order to better utilize the text value in a function
+    const[firstTypedText,setFirstTypedText] = useState("blackgra/eywhite");
+    const[secondTypedText,setSecondTypedText] = useState("/g/w");
+    //this will store the rate(in milliseconds) that the typing component will type characters
+    const[millisecondsPerCharacter, setMillisecondsPerCharacter] = useState(50)
+   //state that when set to true will render the descriptor text
+    const[renderDescriptorText,setRenderDescriptorText] = useState(false);
+
     //after x seconds redirect to the home page
-    useEffect(()=> {
-        setTimeout(() => {
-            setRedirect(true);
-        }, 5000);
-    })
+    // useEffect(()=> {
+    //     setTimeout(() => {
+    //         setRedirect(true);
+    //     }, 10000);
+    // })
 
     return (
         <div>
             <Container>
                 <Row>
-                <Overdrive id="page-title">
-                <Typing speed={150}>
-                    <span id="webpage-title">blackgra/eywhite</span>
-                        <Typing.Backspace count={16} />
-                        <span>b/g/w</span>
-                </Typing>
-                </Overdrive>
-
+                    <Col>
+                        <Overdrive id="page-title">
+                        <Typing onFinishedTyping={() =>setRenderDescriptorText(true)}>
+                            <span id="webpage-title">{firstTypedText}</span>
+                            <Typing.Backspace count={firstTypedText.length -1} />
+                            <span>{secondTypedText}</span>
+                        </Typing>
+                        </Overdrive>
+                    </Col>
                 </Row>
                 <Row>
                     <Col>
-                        baby
-                    </Col>
-                    <Col>
-                        hah
-                    </Col>
-                    <Col>
-                        smell cologne
+                        {renderDescriptorText?<Typing>
+                            <span id="descriptor-text">Music/Sports/Culture</span>
+                        </Typing>
+                        : ''}
                     </Col>
                 </Row>
             </Container>
-            {redirect?<Redirect to ="/Home" />: ''}
-}
+            {redirect?<Redirect to ="/home" />: ''}
         </div>
     )
 }
