@@ -19,18 +19,18 @@ export const LandingPage = () => {
     const[renderDescriptorText,setRenderDescriptorText] = useState(false);
 
     //after x seconds redirect to the home page
-    // useEffect(()=> {
-    //     setTimeout(() => {
-    //         setRedirect(true);
-    //     }, 10000);
-    // })
+    useEffect(()=> {
+        setTimeout(() => {
+            setRedirect(true);
+        }, 5000);
+    })
 
     return (
         <div>
             <Container>
                 <Row>
                     <Col>
-                        <Overdrive id="page-title">
+                        <Overdrive id="page-title" animationDelay={5}>
                         <Typing onFinishedTyping={() =>setRenderDescriptorText(true)}>
                             <span id="webpage-title">{firstTypedText}</span>
                             <Typing.Backspace count={firstTypedText.length -1} />
