@@ -7,14 +7,27 @@ import Toolbar from '@material-ui/core/Toolbar';
 export const Navbar = () => {
 
     return (
-        <div>
+        <Container>
             <AppBar>
                 <Toolbar>
-            <Overdrive id="page-title">
-                <span className="header-bar-title">b/g/w</span>
-            </Overdrive>
-            </Toolbar>
+                    <Row>
+                        <Col>
+                            <Overdrive id="page-title">
+                                <span className="header-bar-title">b/g/w</span>
+                            </Overdrive>
+                        </Col>
+                        <Col>
+                            Music
+                        </Col>
+                        <Col>
+                            Sports
+                        </Col>
+                        <Col>
+                            Culture
+                        </Col>
+                    </Row>
+                </Toolbar>
             </AppBar>
-        </div>
+        </Container>
     )
 }
